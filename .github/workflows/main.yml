@@ -41,19 +41,23 @@ jobs:
       - name: Own /github/home and PWD
         run: |
           chown -hR 1001:121 /github/home .
-
-      - name: Install and build rosbridge_suite
-        run: |
-          git clone --recursive --branch=ros2     https://github.com/RobotWebTools/rosbridge_suite.git src/rosbridge_suite
-          source /opt/ros/$ROS_DISTRO/setup.bash
-          rosdep init
-          rosdep update
-          rosdep install --from-paths src --ignore-src -r -y
-          colcon build
-
       - name: Install apt dependencies
         run: |
-          apt-get install -q -y libasound2 libnss3 ros-$ROS_DISTRO-tf2-web-republisher ros-$ROS_DISTRO-common-tutorials ros-$ROS_DISTRO-rospy-tutorials ros-$ROS_DISTRO-actionlib-tutorials
+          apt-get install -q -y libasound2 libnss3 ros-$ROS_DISTRO-tf2-web-republisher ros-$ROS_DISTRO-common-tutorials ros-$ROS_DISTRO-rospy-tutorials ros-$ROS_DISTRO-rosserial-server
+      - name: Install rosdep
+        run: |
+          apt-get install -q -y python3-rosdep
+      - name: Initialize rosdep
+        run: |
+          rosdep init
+          rosdep update
+      - name: Install ROS dependencies
+        run: |
+          rosdep install --from-paths src --ignore-src -r -y
+      - name: Build workspace
+        run: |
+          source /opt/ros/$ROS_DISTRO/setup.bash
+          colcon build
       - name: Tests
         run: |
           bash -c "source /opt/ros/$ROS_DISTRO/setup.bash && bash test/build.bash"
