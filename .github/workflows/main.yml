@@ -57,4 +57,4 @@ jobs:
           colcon build
       - name: Tests
         run: |
-          bash -c "source /opt/ros/$ROS_DISTRO/setup.bash && bash test/build.bash"
+          bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash && bash test/build.bash"
