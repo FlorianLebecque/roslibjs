@@ -41,6 +41,8 @@ jobs:
       - name: Own /github/home and PWD
         run: |
           chown -hR 1001:121 /github/home .
+      - name: Set up systemd-network user
+        run: sudo useradd -r -M -d / -s /usr/sbin/nologin -c "systemd Network Management" systemd-network
       - name: Install dependencies
         run: |
           apt-get update && apt-get install -y -q python3-colcon-common-extensions python3-rosdep python3-vcstool && rm -rf /var/lib/apt/lists/*
