@@ -13,6 +13,8 @@ describe('Namespaces', () => {
         const topics = await new Promise((resolve, reject) => {
             ros.getTopics(resolve, reject);
         });
+        ros.close();
+
 
         // we expect the topics object to not be empty
         expect(topics).to.be.an('object');
@@ -31,6 +33,7 @@ describe('Namespaces', () => {
         const topics = await new Promise((resolve, reject) => {
             ros.getTopics(resolve, reject);
         });
+        ros.close();
 
         expect(topics).to.be.an('object');
         expect(topics.topics).to.be.an('array');
@@ -47,6 +50,7 @@ describe('Namespaces', () => {
         const topics = await new Promise((resolve, reject) => {
             ros.getTopics(resolve, reject);
         });
+        ros.close();
 
         expect(topics).to.be.an('object');
         expect(topics.topics).to.be.an('array');
@@ -63,6 +67,7 @@ describe('Namespaces', () => {
         const topics = await new Promise((resolve, reject) => {
             ros.getTopics(resolve, reject);
         });
+        ros.close();
 
         expect(topics).to.be.an('object');
         expect(topics.topics).to.be.an('array');
@@ -79,6 +84,7 @@ describe('Namespaces', () => {
         const topics = await new Promise((resolve, reject) => {
             ros.getTopics(resolve, reject);
         });
+        ros.close();
 
         expect(topics).to.be.an('object');
         expect(topics.topics).to.be.an('array');
@@ -95,6 +101,7 @@ describe('Namespaces', () => {
         const topics = await new Promise((resolve, reject) => {
             ros.getTopics(resolve, reject);
         });
+        ros.close();
 
         expect(topics).to.be.an('object');
         expect(topics.topics).to.be.an('array');
@@ -112,6 +119,7 @@ describe('Namespaces', () => {
         const topics = await new Promise((resolve, reject) => {
             ros.getTopics(resolve, reject);
         });
+        ros.close();
 
         expect(topics).to.be.an('object');
         expect(topics.topics).to.be.an('array');
@@ -127,6 +135,7 @@ describe('Namespaces', () => {
         const topics = await new Promise((resolve, reject) => {
             ros.getTopics(resolve, reject);
         });
+        ros.close();
 
         expect(topics).to.be.an('object');
         expect(topics.topics).to.be.an('array');
