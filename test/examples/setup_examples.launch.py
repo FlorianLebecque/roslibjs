@@ -11,7 +11,7 @@ def generate_launch_description():
     # First rosbridge instance
     rosbridge1 = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
-            os.path.join(get_package_share_directory('rosbridge_server'), 'launch', 'rosbridge_websocket_launch.py')
+            os.path.join(get_package_share_directory('rosbridge_server'), 'launch', 'rosbridge_websocket_launch.xml')
         ]),
         launch_arguments={
             'port': '9090',
@@ -23,7 +23,7 @@ def generate_launch_description():
     # Second rosbridge instance
     rosbridge2 = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
-            os.path.join(get_package_share_directory('rosbridge_server'), 'launch', 'rosbridge_websocket_launch.py')
+            os.path.join(get_package_share_directory('rosbridge_server'), 'launch', 'rosbridge_websocket_launch.xml')
         ]),
         launch_arguments={
             'port': '9091',
@@ -35,7 +35,7 @@ def generate_launch_description():
     # Third rosbridge instance
     rosbridge3 = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
-            os.path.join(get_package_share_directory('rosbridge_server'), 'launch', 'rosbridge_websocket_launch.py')
+            os.path.join(get_package_share_directory('rosbridge_server'), 'launch', 'rosbridge_websocket_launch.xml')
         ]),
         launch_arguments={
             'port': '9092',
