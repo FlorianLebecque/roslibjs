@@ -16,7 +16,7 @@ describe('Namespaces', () => {
 
         // we expect the topics object to not be empty
         expect(topics).be.an('object');
-        expect(topics).not.hasLength(0);
+        expect(topics).not.length(0);
 
     });
 
@@ -32,7 +32,7 @@ describe('Namespaces', () => {
         });
 
         expect(topics).be.an('object');
-        expect(topics).not.hasLength(0);
+        expect(topics).not.length(0);
     });
 
     it('Can retrieve a list of topics using a namespace with a leading and no trailing slash', async () => {
@@ -47,7 +47,7 @@ describe('Namespaces', () => {
         });
 
         expect(topics).be.an('object');
-        expect(topics).not.hasLength(0);
+        expect(topics).not.length(0);
     })
 
     it('Can retrieve a list of topics using a nested namespace', async () => {
@@ -62,7 +62,7 @@ describe('Namespaces', () => {
         });
 
         expect(topics).be.an('object');
-        expect(topics).not.hasLength(0);
+        expect(topics).not.length(0);
     });
 
     it('Can retrieve a list of topics using a nested namespace with a leading slash', async () => {
@@ -77,7 +77,7 @@ describe('Namespaces', () => {
         });
 
         expect(topics).be.an('object');
-        expect(topics).not.hasLength(0);
+        expect(topics).not.length(0);
     });
 
     it('Can retrieve a list of topics using a nested namespace with a leading and no trailing slash', async () => {
@@ -92,7 +92,7 @@ describe('Namespaces', () => {
         });
 
         expect(topics).be.an('object');
-        expect(topics).not.hasLength(0);
+        expect(topics).not.length(0);
     });
 
 
@@ -108,7 +108,7 @@ describe('Namespaces', () => {
         });
 
         expect(topics).be.an('object');
-        expect(topics).not.hasLength(0);
+        expect(topics).not.length(0);
     })
 
     it('Can retrieve a list of topics using an empty namespace, not set in constructor', async () => {
@@ -122,7 +122,7 @@ describe('Namespaces', () => {
         });
 
         expect(topics).be.an('object');
-        expect(topics).not.hasLength(0);
+        expect(topics).not.length(0);
     })
 
 })
