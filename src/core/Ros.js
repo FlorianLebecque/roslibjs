@@ -48,7 +48,8 @@ export default class Ros extends EventEmitter {
 
     // Normalize namespace format: remove leading slash if present and ensure trailing slash
     if (this.namespace) {
-      this.namespace = this.namespace.replace(/^\/+/, '').replace(/\/?$/, '/');
+      // Make sure namespace begins with a slash and ends with a slash
+      this.namespace = '/' + this.namespace.replace(/^\/+/, '').replace(/\/?$/, '/');
     }
 
     // begin by checking if a URL was given
