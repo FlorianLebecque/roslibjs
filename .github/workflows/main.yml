@@ -41,9 +41,6 @@ jobs:
       - name: Own /github/home and PWD
         run: |
           chown -hR 1001:121 /github/home .
-      - name: Install apt dependencies
-        run: |
-          apt-get install -q -y libasound2 libnss3 ros-$ROS_DISTRO-tf2-web-republisher ros-$ROS_DISTRO-common-tutorials ros-$ROS_DISTRO-rospy-tutorials ros-$ROS_DISTRO-rosserial-server
       - name: Install rosdep
         run: |
           apt-get install -q -y python3-rosdep
