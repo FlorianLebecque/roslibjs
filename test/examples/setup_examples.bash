@@ -7,6 +7,11 @@ then
     sleep 1
 
     echo "Starting rosbridge and various examples in background processes"
+
+    ros2 launch rosbridge_server rosbridge_websocket_launch.xml port:=9090 
+    ros2 launch rosbridge_server rosbridge_websocket_launch.xml port:=9091 namespace:="hello"
+    ros2 launch rosbridge_server rosbridge_websocket_launch.xml port:=9092 namespace:="hello/world"
+
     # Launch the ROS2 launch file that contains all the nodes
     ros2 launch $(dirname "$0")/setup_examples.launch.py &
     
