@@ -15,8 +15,9 @@ describe('Namespaces', () => {
         });
 
         // we expect the topics object to not be empty
-        expect(topics).be.an('object');
-        expect(topics).not.length(0);
+        expect(topics).to.be.an('object');
+        expect(topics.topics).to.be.an('array');
+        expect(topics.topics.length).to.be.greaterThan(0);
 
     });
 
@@ -31,8 +32,9 @@ describe('Namespaces', () => {
             ros.getTopics(resolve, reject);
         });
 
-        expect(topics).be.an('object');
-        expect(topics).not.length(0);
+        expect(topics).to.be.an('object');
+        expect(topics.topics).to.be.an('array');
+        expect(topics.topics.length).to.be.greaterThan(0);
     });
 
     it('Can retrieve a list of topics using a namespace with a leading and no trailing slash', async () => {
@@ -46,8 +48,9 @@ describe('Namespaces', () => {
             ros.getTopics(resolve, reject);
         });
 
-        expect(topics).be.an('object');
-        expect(topics).not.length(0);
+        expect(topics).to.be.an('object');
+        expect(topics.topics).to.be.an('array');
+        expect(topics.topics.length).to.be.greaterThan(0);
     })
 
     it('Can retrieve a list of topics using a nested namespace', async () => {
@@ -61,8 +64,9 @@ describe('Namespaces', () => {
             ros.getTopics(resolve, reject);
         });
 
-        expect(topics).be.an('object');
-        expect(topics).not.length(0);
+        expect(topics).to.be.an('object');
+        expect(topics.topics).to.be.an('array');
+        expect(topics.topics.length).to.be.greaterThan(0);
     });
 
     it('Can retrieve a list of topics using a nested namespace with a leading slash', async () => {
@@ -76,8 +80,9 @@ describe('Namespaces', () => {
             ros.getTopics(resolve, reject);
         });
 
-        expect(topics).be.an('object');
-        expect(topics).not.length(0);
+        expect(topics).to.be.an('object');
+        expect(topics.topics).to.be.an('array');
+        expect(topics.topics.length).to.be.greaterThan(0);
     });
 
     it('Can retrieve a list of topics using a nested namespace with a leading and no trailing slash', async () => {
@@ -91,8 +96,9 @@ describe('Namespaces', () => {
             ros.getTopics(resolve, reject);
         });
 
-        expect(topics).be.an('object');
-        expect(topics).not.length(0);
+        expect(topics).to.be.an('object');
+        expect(topics.topics).to.be.an('array');
+        expect(topics.topics.length).to.be.greaterThan(0);
     });
 
 
@@ -107,8 +113,9 @@ describe('Namespaces', () => {
             ros.getTopics(resolve, reject);
         });
 
-        expect(topics).be.an('object');
-        expect(topics).not.length(0);
+        expect(topics).to.be.an('object');
+        expect(topics.topics).to.be.an('array');
+        expect(topics.topics.length).to.be.greaterThan(0);
     })
 
     it('Can retrieve a list of topics using an empty namespace, not set in constructor', async () => {
@@ -121,8 +128,9 @@ describe('Namespaces', () => {
             ros.getTopics(resolve, reject);
         });
 
-        expect(topics).be.an('object');
-        expect(topics).not.length(0);
+        expect(topics).to.be.an('object');
+        expect(topics.topics).to.be.an('array');
+        expect(topics.topics.length).to.be.greaterThan(0);
     })
 
 })
