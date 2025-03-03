@@ -60,7 +60,6 @@ jobs:
           apt-get update
           apt-get install -y -q \
             ros-${ROS_DISTRO}-tf2-ros \
-            ros-${ROS_DISTRO}-tf2-web-republisher \
             ros-${ROS_DISTRO}-examples-rclpy-minimal-service \
             ros-${ROS_DISTRO}-demo-nodes-cpp
 

@@ -15,12 +15,12 @@ def generate_launch_description():
     )
     ld.add_action(tf_publisher)
     
-    # TF2 web republisher
-    tf2_web_republisher = Node(
-        package='tf2_web_republisher',
-        executable='tf2_web_republisher'
-    )
-    ld.add_action(tf2_web_republisher)
+    # # TF2 web republisher
+    # tf2_web_republisher = Node(
+    #     package='tf2_web_republisher',
+    #     executable='tf2_web_republisher'
+    # )
+    # ld.add_action(tf2_web_republisher)
     
     # Example service server (replacement for add_two_ints_server)
     add_two_ints_server = Node(
