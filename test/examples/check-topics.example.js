@@ -25,7 +25,7 @@ describe('Example topics are live', function () {
 
     var example = ros.Topic({
         name: '/some_test_topic',
-        messageType: 'std_msgs/String'
+        messageType: 'std_msgs/msg/String'
     });
 
     it('doesn\'t automatically advertise the topic', () => new Promise((done) => {
