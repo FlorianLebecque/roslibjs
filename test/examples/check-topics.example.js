@@ -9,14 +9,14 @@ var expectedTopics = [
     '/fibonacci/feedback', '/fibonacci/status', '/fibonacci/result'
 ];
 
-describe('Example topics are live', function() {
+describe('Example topics are live', function () {
     var ros = new ROSLIB.Ros({
         url: 'ws://localhost:9090'
     });
-    
-    it('getTopics', () => new Promise((done) =>  {
-        ros.getTopics(function(result) {
-            expectedTopics.forEach(function(topic) {
+
+    it('getTopics', () => new Promise((done) => {
+        ros.getTopics(function (result) {
+            expectedTopics.forEach(function (topic) {
                 expect(result.topics).to.contain(topic, 'Couldn\'t find topic: ' + topic);
             });
             done();
@@ -25,32 +25,32 @@ describe('Example topics are live', function() {
 
     var example = ros.Topic({
         name: '/some_test_topic',
-        messageType: 'std_msgs/String'
+        messageType: 'std_msgs/msg/String'
     });
 
-    it('doesn\'t automatically advertise the topic', () => new Promise((done) =>  {
-        ros.getTopics(function(result) {
+    it('doesn\'t automatically advertise the topic', () => new Promise((done) => {
+        ros.getTopics(function (result) {
             expect(result.topics).not.to.contain('/some_test_topic');
             example.advertise();
             done();
         });
     }));
 
-    it('advertise broadcasts the topic', () => new Promise((done) =>  {
-        ros.getTopics(function(result) {
+    it('advertise broadcasts the topic', () => new Promise((done) => {
+        ros.getTopics(function (result) {
             expect(result.topics).to.contain('/some_test_topic');
             example.unadvertise();
             done();
         });
     }));
 
-    it('unadvertise will end the topic (if it\s the last around)', () => new Promise((done) =>  {
+    it('unadvertise will end the topic (if it\s the last around)', () => new Promise((done) => {
         console.log('Unadvertisement test. Wait for 15 seconds..');
-        setTimeout(function() {
-          ros.getTopics(function(result) {
-              expect(result.topics).not.to.contain('/some_test_topic');
-              done();
-          });
+        setTimeout(function () {
+            ros.getTopics(function (result) {
+                expect(result.topics).not.to.contain('/some_test_topic');
+                done();
+            });
         }, 15000);
     }), 20000);
 });

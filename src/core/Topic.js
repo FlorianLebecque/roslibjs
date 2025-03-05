@@ -24,7 +24,7 @@ export default class Topic extends EventEmitter {
    * @param {Object} options
    * @param {Ros} options.ros - The ROSLIB.Ros connection handle.
    * @param {string} options.name - The topic name, like '/cmd_vel'.
-   * @param {string} options.messageType - The message type, like 'std_msgs/String'.
+   * @param {string} options.messageType - The message type, like 'std_msgs/msg/String'.
    * @param {string} [options.compression=none] - The type of compression to use, like 'png', 'cbor', or 'cbor-raw'.
    * @param {number} [options.throttle_rate=0] - The rate (in ms in between messages) at which to throttle the topics.
    * @param {number} [options.queue_size=100] - The queue created at bridge side for re-publishing webtopics.
@@ -58,7 +58,7 @@ export default class Topic extends EventEmitter {
       this.emit(
         'warning',
         this.compression +
-          ' compression is not supported. No compression will be used.'
+        ' compression is not supported. No compression will be used.'
       );
       this.compression = 'none';
     }

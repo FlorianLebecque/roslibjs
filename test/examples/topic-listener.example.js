@@ -6,21 +6,21 @@ var ros = new ROSLIB.Ros({
 });
 
 function format(msg) {
-    return {data: msg};
+    return { data: msg };
 }
 var messages = ['1', '2', '3', '4'].map(format);
 
-describe('Topics Example', function() {
+describe('Topics Example', function () {
 
     function createAndStreamTopic(topicName) {
         var topic = ros.Topic({
             name: topicName,
-            messageType: 'std_msgs/String'
+            messageType: 'std_msgs/msg/String'
         });
         var idx = 0;
 
         function emit() {
-            setTimeout(function() {
+            setTimeout(function () {
                 topic.publish(messages[idx++]);
                 if (idx < messages.length) {
                     emit();
@@ -40,7 +40,7 @@ describe('Topics Example', function() {
         var topic = createAndStreamTopic('/echo/test');
         var expected = messages.slice();
 
-        topic.subscribe(function(message) {
+        topic.subscribe(function (message) {
             expect(message).to.be.eql(expected.shift());
         });
 

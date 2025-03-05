@@ -7,7 +7,7 @@ then
     sleep 1
 
     # Check for processes on required ports and kill them
-    for port in 9090 9091 9092
+    for port in 9090 
     do
         echo "Checking port $port..."
         pid=$(lsof -t -i:"$port" 2>/dev/null)
@@ -24,8 +24,6 @@ then
     echo "Starting rosbridge and various examples in background processes"
 
     ros2 launch rosbridge_server rosbridge_websocket_launch.xml respawn:=true port:=9090 &
-    ros2 launch rosbridge_server rosbridge_websocket_launch.xml respawn:=true port:=9091 namespace:="hello" &
-    ros2 launch rosbridge_server rosbridge_websocket_launch.xml respawn:=true port:=9092 namespace:="hello/world" &
 
     # Launch the ROS2 launch file that contains all the nodes
     ros2 launch $(dirname "$0")/setup_examples.launch.py &
