@@ -1,31 +1,53 @@
 #! /usr/bin/env bash
 
-if command -v rosrun 2>/dev/null
+if command -v ros2 2>/dev/null
 then
     echo "Shutting everything down"
-    pgrep -f "[r]os" | xargs kill -9
+    pgrep -f "[r]os" | xargs kill -9 2>/dev/null || true
     sleep 1
 
-    echo "Starting roscore and various examples in background processes"
-    roslaunch examples/setup_examples.launch > roslaunch.log &
+    # Check for processes on required ports and kill them
+    for port in 9090 9091 9092
+    do
+        echo "Checking port $port..."
+        pid=$(lsof -t -i:"$port" 2>/dev/null)
+        if [ -n "$pid" ]; then
+            echo "Process using port $port found: PID=$pid, command: $(ps -p "$pid" -o comm=)"
+            echo "Killing process $pid"
+            kill -9 "$pid" 2>/dev/null || true
+        else
+            echo "Port $port is available"
+        fi
+    done
+    sleep 1
 
+    echo "Starting rosbridge and various examples in background processes"
+
+    ros2 launch rosbridge_server rosbridge_websocket_launch.xml respawn:=true port:=9090 &
+    ros2 launch rosbridge_server rosbridge_websocket_launch.xml respawn:=true port:=9091 namespace:="hello" &
+    ros2 launch rosbridge_server rosbridge_websocket_launch.xml respawn:=true port:=9092 namespace:="hello/world" &
+
+    # Launch the ROS2 launch file that contains all the nodes
+    ros2 launch $(dirname "$0")/setup_examples.launch.py &
+    
     LAUNCHED=false
     for i in {1..10}
     do
-        echo "Waiting for /hello_world_publisher...$i"
+        echo "Waiting for topic publishers...$i"
         sleep 1
-        rostopic info /listener > /dev/null && LAUNCHED=true && break
+        # Check if the talker node's topic is active
+        ros2 topic info /chatter > /dev/null 2>&1 && LAUNCHED=true && break
     done
     if [ $LAUNCHED == true ]
     then
         echo "Ready for lift off"
         exit 0
     else
-        echo "/hello_world_publisher not launched"
+        echo "Publishers not launched"
         exit 1
     fi
 else
-    echo "Couldn't find ROS on path (try to source it)"
+    echo "Couldn't find ROS2 on path (try to source it)"
     # shellcheck disable=SC2016
     echo 'source /opt/ros/$ROS_DISTRO/setup.bash'
     exit 1
