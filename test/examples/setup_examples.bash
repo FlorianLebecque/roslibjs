@@ -3,7 +3,22 @@
 if command -v ros2 2>/dev/null
 then
     echo "Shutting everything down"
-    pgrep -f "[r]os" | xargs kill -9
+    pgrep -f "[r]os" | xargs kill -9 2>/dev/null || true
+    sleep 1
+
+    # Check for processes on required ports and kill them
+    for port in 9090 9091 9092
+    do
+        echo "Checking port $port..."
+        pid=$(lsof -t -i:"$port" 2>/dev/null)
+        if [ -n "$pid" ]; then
+            echo "Process using port $port found: PID=$pid, command: $(ps -p "$pid" -o comm=)"
+            echo "Killing process $pid"
+            kill -9 "$pid" 2>/dev/null || true
+        else
+            echo "Port $port is available"
+        fi
+    done
     sleep 1
 
     echo "Starting rosbridge and various examples in background processes"
